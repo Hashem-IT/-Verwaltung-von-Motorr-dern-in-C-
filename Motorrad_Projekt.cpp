@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -104,7 +103,7 @@ class Motorradverwaltung
             cin >> *neuerKunde;
             if (!neuerKunde->fuehrerschein)
             {
-                cout << "Kein Fuhrerschein von Klasse A. Reservierung nicht moglich." << endl;
+                cout << "\033[31m" <<"Kein Fuhrerschein von Klasse A. Reservierung nicht moglich."<< "\033[0m" << endl;
                 cout << endl;
                 delete neuerKunde;
                 return;
@@ -116,7 +115,7 @@ class Motorradverwaltung
             {
                 if (temp->motorrad == neuerKunde->motorrad)
                 {
-                    cout << "Reservierung nicht moglich, schon reserviert." << endl;
+                    cout <<"\033[31m" << "Reservierung nicht moglich, schon reserviert."<< "\033[0m" << endl;
                     cout << endl;
                     delete neuerKunde;
                     return;
@@ -135,7 +134,7 @@ class Motorradverwaltung
         {
             if (!kund)
             {
-                cout << "Keine Kunden vorhanden." << endl;
+                cout << "\033[31m" << "Keine Kunden vorhanden."<< "\033[0m" << endl;
                 return;
             }
 
@@ -155,7 +154,7 @@ class Motorradverwaltung
 
             if (!temp)
             {
-                cout << "Kunde nicht gefunden." << endl;
+                cout <<  "\033[31m"<<"Kunde nicht gefunden." << "\033[0m" << endl;
                 return;
             }
 
@@ -170,8 +169,9 @@ class Motorradverwaltung
 
             delete temp;
             speichernZuFolder();
-            cout << "Kunde entfernt." << endl;
+            cout << "\033[31m"<<"Kunde entfernt."<< "\033[0m" << endl;
             cout << endl;
+
         }
 
         // Methode zur Ausgabe aller Kunden
@@ -181,9 +181,9 @@ class Motorradverwaltung
 
             while (temp)
             {
-                cout << "Kunde: " << temp->vorname <<", " <<temp->nachname <<", " <<temp->strasse <<". "  <<temp->hausnummer <<", "
+                cout <<"\033[34m" << "Kunde: " << temp->vorname <<", " <<temp->nachname <<", " <<temp->strasse <<". "  <<temp->hausnummer <<", "
                 <<temp->plz <<", "  <<temp->ort <<", "  <<temp->geburtsjahr <<", "  << temp->telefon <<", "  << temp->fuehrerschein << endl;
-                cout << "Motorrad: "<<temp->motorrad << endl;
+                cout << "Motorrad: "<<temp->motorrad << "\033[0m"<< endl;
                 temp = temp->next;
             }
             cout << endl;
@@ -266,9 +266,11 @@ int main() {
         switch (wahl) {
             case 1:
                 verwaltung.Kundefugen();        //neue Kunde einfügen
+                verwaltung.Kundenausdrucken();
                 break;
             case 2:
                 verwaltung.Kundeloschen();      //Kunde löschen
+                verwaltung.Kundenausdrucken();
                 break;
             case 3:
                 verwaltung.Kundenausdrucken();  // alle Kunden ausdrucken
@@ -282,4 +284,3 @@ int main() {
 
     return 0;
 }
-
